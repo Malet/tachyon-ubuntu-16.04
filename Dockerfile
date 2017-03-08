@@ -25,7 +25,10 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -yq \
   netcat
 
 # Allow services installed by apt-get to start automatically
-RUN sed -i'' /usr/sbin/policy-rc.d -e 's/exit 101/exit 0/'
+RUN sed -i'' /usr/sbin/policy-rc.d -e 's/exit 101/exit 0/' \
+&& mv /usr/bin/hostnamectl /usr/bin/hostnamectl_original
+
+COPY hostnamectl_wrapper /usr/bin/hostnamectl
 
 # Symlinked to the systemd binary
 CMD ["/sbin/init"]

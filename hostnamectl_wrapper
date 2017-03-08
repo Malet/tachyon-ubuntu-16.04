@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+[[ ${1} == "set-hostname" ]] && (
+  new_hostname="${2}"
+  echo "${new_hostname}" > /etc/hostname
+  hostname "${new_hostname}"
+) || hostnamectl_original $@
