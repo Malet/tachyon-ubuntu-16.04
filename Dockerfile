@@ -20,6 +20,7 @@ RUN apt-get update
 # Add required dependency for serverspec to see open ports
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -yq \
   dbus \
+  iproute2 \
   iptables \
   net-tools \
   netcat
